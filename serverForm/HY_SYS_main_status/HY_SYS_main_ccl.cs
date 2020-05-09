@@ -174,6 +174,7 @@ namespace serverForm
         }
 
         /// <summary>
+        /// 
         /// return 是否复位
         /// </summary>
         /// <param name="ccl_cmd1"></param>
@@ -189,9 +190,18 @@ namespace serverForm
                     add_but_fliker(22);
                     add_but_fliker(23);
                 }
-                if (ccl_cmd1[5] == 1)//误车1
+                else//两路都通电
+                {
+                    stop_but_flik(22);
+                    stop_but_flik(23);
+                    m_but_show[22].ButtonColor = SystemColors.ControlLight;
+                    m_but_show[23].ButtonColor = SystemColors.ControlLight;
+                }
+
+
+                if (ccl_cmd1[4] == 1)//误车1
                     add_but_fliker(24);
-                if (ccl_cmd1[4] == 1)//误车2
+                if (ccl_cmd1[5] == 1)//误车2
                     add_but_fliker(25);
                 is_ccl_reset = 1;
                 return 1;
@@ -205,7 +215,14 @@ namespace serverForm
                     m_but_show[22].ButtonColor = Color.Red;
                     m_but_show[23].ButtonColor = Color.Red;
                 }
-                if (ccl_cmd1[5] == 1)//误车1
+                else//两路都通电
+                {
+                    stop_but_flik(22);
+                    stop_but_flik(23);
+                    m_but_show[22].ButtonColor = SystemColors.ControlLight;
+                    m_but_show[23].ButtonColor = SystemColors.ControlLight;
+                }
+                if (ccl_cmd1[4] == 1)//左误车1
                 {
                     stop_but_flik(24);
                     m_but_show[24].ButtonColor = Color.Red;
@@ -216,7 +233,7 @@ namespace serverForm
                     m_but_show[24].ButtonColor = SystemColors.ControlLight;
                 }
 
-                if (ccl_cmd1[4] == 1)//误车1
+                if (ccl_cmd1[5] == 1)//右误车1
                 {
                     stop_but_flik(25);
                     m_but_show[25].ButtonColor = Color.Red;
@@ -233,6 +250,8 @@ namespace serverForm
             }
             if (ccl_cmd1[2] == 1|| ccl_cmd1[3] == 1)//失电1有效
             {
+                add_but_fliker(22);
+                add_but_fliker(23);
                 m_but_show[22].ButtonColor = Color.Red;
                 m_but_show[23].ButtonColor = Color.Red;
             }
@@ -243,7 +262,7 @@ namespace serverForm
                 m_but_show[22].ButtonColor = SystemColors.ControlLight;
                 m_but_show[23].ButtonColor = SystemColors.ControlLight;
             }
-            if (ccl_cmd1[5] == 1)//误车1
+            if (ccl_cmd1[4] == 1)//误车1
             {
                 //m_but_show[24].ButtonColor = Color.Red;
                 add_but_fliker(24);
@@ -253,7 +272,7 @@ namespace serverForm
                 stop_but_flik(24);
                 m_but_show[24].ButtonColor = SystemColors.ControlLight;
             }
-            if (ccl_cmd1[4] == 1)//误车1
+            if (ccl_cmd1[5] == 1)//误车2
             {
                 add_but_fliker(25);
                 //m_but_show[25].ButtonColor = Color.Red;
